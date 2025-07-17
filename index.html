@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Curricular Ingeniería en Informática</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 15px;
+    }
+    .semestre {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .semestre h2 {
+      margin-top: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+    .materia {
+      background: #e8f0fe;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .materia.aprobada {
+      background: #c6f6d5;
+      text-decoration: line-through;
+    }
+    .materia small {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      font-size: 10px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Malla Curricular - Ingeniería en Informática</h1>
+  <div class="grid" id="malla"></div>
+
+  <script>
+    const malla = {
+      'Semestre 1': [
+        { nombre: 'Matemática', codigo: 'MAT1', creditos: 5 },
+        { nombre: 'Análisis de Sistema', codigo: 'AS1', creditos: 5 },
+        { nombre: 'Desarrollo de Algoritmos', codigo: 'DA1', creditos: 5 },
+        { nombre: 'Taller Integrado ABP', codigo: 'TI1', creditos: 5 },
+        { nombre: 'TIC', codigo: 'TIC1', creditos: 5 },
+        { nombre: 'Taller de Hardware', codigo: 'TH1', creditos: 5 },
+        { nombre: 'Comunicación y Aprendizaje', codigo: 'CA1', creditos: 5 },
+        { nombre: 'Desarrollo Personal', codigo: 'DP1', creditos: 5 }
+      ],
+      'Semestre 2': [
+        { nombre: 'Matemática Aplicada', codigo: 'MA2', creditos: 5 },
+        { nombre: 'Análisis y Diseño O.O', codigo: 'ADOO2', creditos: 5 },
+        { nombre: 'Taller de Programación I', codigo: 'TP1', creditos: 5 },
+        { nombre: 'Interfaz de Usuario', codigo: 'IU2', creditos: 5 },
+        { nombre: 'Modelamiento de la Información', codigo: 'MI2', creditos: 5 },
+        { nombre: 'Inglés I', codigo: 'ING1', creditos: 5 }
+      ],
+      'Semestre 3': [
+        { nombre: 'Lenguaje de Programación Web I', codigo: 'LPW1', creditos: 5 },
+        { nombre: 'Lenguaje de Programación O.O I', codigo: 'LPOO1', creditos: 5 },
+        { nombre: 'Construcción de Base de Datos', codigo: 'CBD3', creditos: 5 },
+        { nombre: 'Infraestructura Tecnológica I', codigo: 'IT1', creditos: 5 },
+        { nombre: 'Inglés II', codigo: 'ING2', creditos: 5 },
+        { nombre: 'Emprendimiento y Empleabilidad', codigo: 'EM3', creditos: 5 }
+      ],
+      'Semestre 4': [
+        { nombre: 'Taller de Nuevas Tecnologías', codigo: 'TNT4', creditos: 5 },
+        { nombre: 'Construcción de Software', codigo: 'CS4', creditos: 5 },
+        { nombre: 'Metodologías y Calidad del Software', codigo: 'MQS4', creditos: 5 },
+        { nombre: 'Sustentabilidad y Medioambiente', codigo: 'SM4', creditos: 5 },
+        { nombre: 'Cultura y Sociedad', codigo: 'CSOC4', creditos: 5 }
+      ],
+      'Semestre 5': [
+        { nombre: 'Lenguaje de Programación O.O II', codigo: 'LPOO2', creditos: 5 },
+        { nombre: 'Lenguaje de Programación de Base de Datos', codigo: 'LPBD5', creditos: 5 },
+        { nombre: 'Redes y Comunicaciones de Datos', codigo: 'RCD5', creditos: 5 },
+        { nombre: 'Infraestructura Tecnológica II', codigo: 'IT2', creditos: 5 },
+        { nombre: 'Análisis Estadístico de Datos', codigo: 'AED5', creditos: 5 },
+        { nombre: 'Inglés III', codigo: 'ING3', creditos: 5 }
+      ],
+      'Semestre 6': [
+        { nombre: 'Cálculo', codigo: 'CAL6', creditos: 5 },
+        { nombre: 'Inteligencia de Negocios I', codigo: 'IN1', creditos: 5 },
+        { nombre: 'Ingeniería de Software', codigo: 'IS6', creditos: 5 },
+        { nombre: 'Electiva 1', codigo: 'ELECT1', creditos: 5 },
+        { nombre: 'Seguridad Informática', codigo: 'SI6', creditos: 5 },
+        { nombre: 'Administración de Base de Datos', codigo: 'ABD6', creditos: 5 },
+        { nombre: 'Inglés IV', codigo: 'ING4', creditos: 5 }
+      ],
+      'Semestre 7': [
+        { nombre: 'Inteligencia de Negocios II', codigo: 'IN2', creditos: 5 },
+        { nombre: 'Gestión de Sistemas Computacionales', codigo: 'GSC7', creditos: 5 },
+        { nombre: 'Formulación de Proyectos Informáticos', codigo: 'FPI7', creditos: 5 },
+        { nombre: 'Electiva 2', codigo: 'ELECT2', creditos: 5 },
+        { nombre: 'Cloud Computing', codigo: 'CC7', creditos: 5 },
+        { nombre: 'Habilidades Comunicativas', codigo: 'HC7', creditos: 5 }
+      ],
+      'Semestre 8': [
+        { nombre: 'Taller de Proyectos Informáticos', codigo: 'TPI8', creditos: 5 },
+        { nombre: 'Lenguaje de Programación Web II', codigo: 'LPW2', creditos: 5 },
+        { nombre: 'Electiva 3', codigo: 'ELECT3', creditos: 5 },
+        { nombre: 'Auditoría Informática', codigo: 'AI8', creditos: 5 },
+        { nombre: 'Proyecto Integrado Final', codigo: 'PIF8', creditos: 5 },
+        { nombre: 'Práctica Integrada de Competencias', codigo: 'PIC8', creditos: 5 }
+      ]
+    };
+
+    const estado = JSON.parse(localStorage.getItem('mallaEstado') || '{}');
+
+    const contenedor = document.getElementById('malla');
+
+    Object.entries(malla).forEach(([semestre, materias]) => {
+      const col = document.createElement('div');
+      col.className = 'semestre';
+      col.innerHTML = `<h2>${semestre}</h2>`;
+
+      materias.forEach(m => {
+        const div = document.createElement('div');
+        div.className = 'materia';
+        div.textContent = m.nombre;
+        if (estado[m.codigo]) div.classList.add('aprobada');
+
+        const info = document.createElement('small');
+        info.textContent = `${m.codigo} - ${m.creditos} créditos`;
+        div.appendChild(info);
+
+        div.addEventListener('click', () => {
+          div.classList.toggle('aprobada');
+          estado[m.codigo] = div.classList.contains('aprobada');
+          localStorage.setItem('mallaEstado', JSON.stringify(estado));
+        });
+
+        col.appendChild(div);
+      });
+
+      contenedor.appendChild(col);
+    });
+  </script>
+</body>
+</html>
