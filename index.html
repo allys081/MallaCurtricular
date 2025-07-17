@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Malla Curricular Ingeniería en Informática</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -45,6 +46,11 @@
       background: #c6f6d5;
       text-decoration: line-through;
     }
+    .materia.bloqueada {
+      background: #f0f0f0;
+      color: #999;
+      pointer-events: none;
+    }
     .materia small {
       position: absolute;
       bottom: 5px;
@@ -72,55 +78,55 @@
       ],
       'Semestre 2': [
         { nombre: 'Matemática Aplicada', codigo: 'MA2', creditos: 5 },
-        { nombre: 'Análisis y Diseño O.O', codigo: 'ADOO2', creditos: 5 },
-        { nombre: 'Taller de Programación I', codigo: 'TP1', creditos: 5 },
-        { nombre: 'Interfaz de Usuario', codigo: 'IU2', creditos: 5 },
-        { nombre: 'Modelamiento de la Información', codigo: 'MI2', creditos: 5 },
+        { nombre: 'Análisis y Diseño O.O', codigo: 'ADOO2', creditos: 5, requiere: ['AS1'] },
+        { nombre: 'Taller de Programación I', codigo: 'TP1', creditos: 5, requiere: ['DA1'] },
+        { nombre: 'Interfaz de Usuario', codigo: 'IU2', creditos: 5, requiere: ['DA1'] },
+        { nombre: 'Modelamiento de la Información', codigo: 'MI2', creditos: 5, requiere: ['AS1'] },
         { nombre: 'Inglés I', codigo: 'ING1', creditos: 5 }
       ],
       'Semestre 3': [
-        { nombre: 'Lenguaje de Programación Web I', codigo: 'LPW1', creditos: 5 },
-        { nombre: 'Lenguaje de Programación O.O I', codigo: 'LPOO1', creditos: 5 },
-        { nombre: 'Construcción de Base de Datos', codigo: 'CBD3', creditos: 5 },
-        { nombre: 'Infraestructura Tecnológica I', codigo: 'IT1', creditos: 5 },
+        { nombre: 'Lenguaje de Programación Web I', codigo: 'LPW1', creditos: 5, requiere: ['TP1', 'IU2'] },
+        { nombre: 'Lenguaje de Programación O.O I', codigo: 'LPOO1', creditos: 5, requiere: ['TP1', 'IU2'] },
+        { nombre: 'Construcción de Base de Datos', codigo: 'CBD3', creditos: 5, requiere: ['TP1', 'IU2'] },
+        { nombre: 'Infraestructura Tecnológica I', codigo: 'IT1', creditos: 5, requiere: ['TH1'] },
         { nombre: 'Inglés II', codigo: 'ING2', creditos: 5 },
         { nombre: 'Emprendimiento y Empleabilidad', codigo: 'EM3', creditos: 5 }
       ],
       'Semestre 4': [
-        { nombre: 'Taller de Nuevas Tecnologías', codigo: 'TNT4', creditos: 5 },
-        { nombre: 'Construcción de Software', codigo: 'CS4', creditos: 5 },
+        { nombre: 'Taller de Nuevas Tecnologías', codigo: 'TNT4', creditos: 5, requiere: ['LPW1', 'LPOO1'] },
+        { nombre: 'Construcción de Software', codigo: 'CS4', creditos: 5, requiere: ['CBD3'] },
         { nombre: 'Metodologías y Calidad del Software', codigo: 'MQS4', creditos: 5 },
         { nombre: 'Sustentabilidad y Medioambiente', codigo: 'SM4', creditos: 5 },
         { nombre: 'Cultura y Sociedad', codigo: 'CSOC4', creditos: 5 }
       ],
       'Semestre 5': [
-        { nombre: 'Lenguaje de Programación O.O II', codigo: 'LPOO2', creditos: 5 },
-        { nombre: 'Lenguaje de Programación de Base de Datos', codigo: 'LPBD5', creditos: 5 },
-        { nombre: 'Redes y Comunicaciones de Datos', codigo: 'RCD5', creditos: 5 },
-        { nombre: 'Infraestructura Tecnológica II', codigo: 'IT2', creditos: 5 },
+        { nombre: 'Lenguaje de Programación O.O II', codigo: 'LPOO2', creditos: 5, requiere: ['TNT4'] },
+        { nombre: 'Lenguaje de Programación de Base de Datos', codigo: 'LPBD5', creditos: 5, requiere: ['CS4'] },
+        { nombre: 'Redes y Comunicaciones de Datos', codigo: 'RCD5', creditos: 5, requiere: ['IT1'] },
+        { nombre: 'Infraestructura Tecnológica II', codigo: 'IT2', creditos: 5, requiere: ['IT1'] },
         { nombre: 'Análisis Estadístico de Datos', codigo: 'AED5', creditos: 5 },
-        { nombre: 'Inglés III', codigo: 'ING3', creditos: 5 }
+        { nombre: 'Inglés III', codigo: 'ING3', creditos: 5, requiere: ['ING2'] }
       ],
       'Semestre 6': [
-        { nombre: 'Cálculo', codigo: 'CAL6', creditos: 5 },
-        { nombre: 'Inteligencia de Negocios I', codigo: 'IN1', creditos: 5 },
-        { nombre: 'Ingeniería de Software', codigo: 'IS6', creditos: 5 },
+        { nombre: 'Cálculo', codigo: 'CAL6', creditos: 5, requiere: ['MAT1'] },
+        { nombre: 'Inteligencia de Negocios I', codigo: 'IN1', creditos: 5, requiere: ['LPOO1', 'LPBD5'] },
+        { nombre: 'Ingeniería de Software', codigo: 'IS6', creditos: 5, requiere: ['MQS4'] },
         { nombre: 'Electiva 1', codigo: 'ELECT1', creditos: 5 },
-        { nombre: 'Seguridad Informática', codigo: 'SI6', creditos: 5 },
-        { nombre: 'Administración de Base de Datos', codigo: 'ABD6', creditos: 5 },
-        { nombre: 'Inglés IV', codigo: 'ING4', creditos: 5 }
+        { nombre: 'Seguridad Informática', codigo: 'SI6', creditos: 5, requiere: ['RCD5', 'IT2'] },
+        { nombre: 'Administración de Base de Datos', codigo: 'ABD6', creditos: 5, requiere: ['RCD5', 'IT2'] },
+        { nombre: 'Inglés IV', codigo: 'ING4', creditos: 5, requiere: ['ING3'] }
       ],
       'Semestre 7': [
-        { nombre: 'Inteligencia de Negocios II', codigo: 'IN2', creditos: 5 },
-        { nombre: 'Gestión de Sistemas Computacionales', codigo: 'GSC7', creditos: 5 },
-        { nombre: 'Formulación de Proyectos Informáticos', codigo: 'FPI7', creditos: 5 },
+        { nombre: 'Inteligencia de Negocios II', codigo: 'IN2', creditos: 5, requiere: ['IN1'] },
+        { nombre: 'Gestión de Sistemas Computacionales', codigo: 'GSC7', creditos: 5, requiere: ['IS6'] },
+        { nombre: 'Formulación de Proyectos Informáticos', codigo: 'FPI7', creditos: 5, requiere: ['IS6'] },
         { nombre: 'Electiva 2', codigo: 'ELECT2', creditos: 5 },
-        { nombre: 'Cloud Computing', codigo: 'CC7', creditos: 5 },
+        { nombre: 'Cloud Computing', codigo: 'CC7', creditos: 5, requiere: ['SI6', 'ABD6'] },
         { nombre: 'Habilidades Comunicativas', codigo: 'HC7', creditos: 5 }
       ],
       'Semestre 8': [
-        { nombre: 'Taller de Proyectos Informáticos', codigo: 'TPI8', creditos: 5 },
-        { nombre: 'Lenguaje de Programación Web II', codigo: 'LPW2', creditos: 5 },
+        { nombre: 'Taller de Proyectos Informáticos', codigo: 'TPI8', creditos: 5, requiere: ['GSC7', 'FPI7'] },
+        { nombre: 'Lenguaje de Programación Web II', codigo: 'LPW2', creditos: 5, requiere: ['IN2'] },
         { nombre: 'Electiva 3', codigo: 'ELECT3', creditos: 5 },
         { nombre: 'Auditoría Informática', codigo: 'AI8', creditos: 5 },
         { nombre: 'Proyecto Integrado Final', codigo: 'PIF8', creditos: 5 },
@@ -129,8 +135,12 @@
     };
 
     const estado = JSON.parse(localStorage.getItem('mallaEstado') || '{}');
-
     const contenedor = document.getElementById('malla');
+
+    function estaDesbloqueada(materia) {
+      if (!materia.requiere) return true;
+      return materia.requiere.every(cod => estado[cod]);
+    }
 
     Object.entries(malla).forEach(([semestre, materias]) => {
       const col = document.createElement('div');
@@ -141,16 +151,21 @@
         const div = document.createElement('div');
         div.className = 'materia';
         div.textContent = m.nombre;
-        if (estado[m.codigo]) div.classList.add('aprobada');
+
+        const aprobada = estado[m.codigo];
+        if (aprobada) div.classList.add('aprobada');
+        if (!estaDesbloqueada(m)) div.classList.add('bloqueada');
 
         const info = document.createElement('small');
         info.textContent = `${m.codigo} - ${m.creditos} créditos`;
         div.appendChild(info);
 
         div.addEventListener('click', () => {
+          if (div.classList.contains('bloqueada')) return;
           div.classList.toggle('aprobada');
           estado[m.codigo] = div.classList.contains('aprobada');
           localStorage.setItem('mallaEstado', JSON.stringify(estado));
+          location.reload();
         });
 
         col.appendChild(div);
